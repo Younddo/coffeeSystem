@@ -1,7 +1,16 @@
 package com.kakao.coffeesystem.domain;
 
-import javax.persistence.Entity;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
-public class Order {
+@NoArgsConstructor
+public class Order extends TimeStamped {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
 }
