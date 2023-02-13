@@ -1,23 +1,32 @@
 package com.kakao.coffeesystem.service;
 
-import com.kakao.coffeesystem.domain.User;
-import com.kakao.coffeesystem.dto.requestDto.UserRequestDto;
-import com.kakao.coffeesystem.dto.responseDto.UserResponseDto;
+import com.kakao.coffeesystem.domain.Member;
+import com.kakao.coffeesystem.dto.requestDto.MemberRequestDto;
+import com.kakao.coffeesystem.dto.responseDto.MemberResponseDto;
 import com.kakao.coffeesystem.global.GlobalResponseDto;
-import com.kakao.coffeesystem.repository.UserRepository;
+import com.kakao.coffeesystem.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
-    public GlobalResponseDto<?> chargePoint(UserRequestDto userRequestDto) {
-        User user = userRepository.findUserByUserNum(userRequestDto.getUserNum()).orElse(
-                userRepository.save(new User(userRequestDto)));
-        user.update(userRequestDto);
-        return GlobalResponseDto.ok("포인트 충전 성공!", new UserResponseDto(user));
+    private final MemberRepository memberRepository;
+    @Transactional
+    public GlobalResponseDto<MemberResponseDto> chargePoint(MemberRequestDto memberRequestDto) {
+
+        if(!memberRepository.existsMemberByUserNum(memberRequestDto.getUserNum())) {
+            Member member = new Member(memberRequestDto);
+            memberRepository.save(member);
+            return GlobalResponseDto.ok("포인트 충전 성공!", new MemberResponseDto(member));
+        } else{
+            Member member = memberRepository.findUserByUserNum(memberRequestDto.getUserNum());
+            member.update(memberRequestDto);
+            return GlobalResponseDto.ok("포인트 충전 성공!", new MemberResponseDto(member));
+        }
     }
 
 }
