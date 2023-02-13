@@ -1,18 +1,18 @@
 package com.kakao.coffeesystem.dto.responseDto;
 
-import com.kakao.coffeesystem.domain.User;
+import com.kakao.coffeesystem.domain.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserResponseDto {
+public class MemberResponseDto {
 
     private Long id;
     private String userNum;
     private Long point;
 
-    public UserResponseDto(User user) {
+    public MemberResponseDto(Member user) {
         this.userNum = user.getUserNum();
         this.point = user.getPoint();
     }
