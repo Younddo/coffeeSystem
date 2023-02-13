@@ -1,5 +1,6 @@
 package com.kakao.coffeesystem.domain;
 
+import com.kakao.coffeesystem.dto.requestDto.MenuRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
+@Table(name="menu")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,4 +24,8 @@ public class Menu extends TimeStamped{
     @Column
     private Long price;
 
+    public Menu(MenuRequestDto menuRequestDto) {
+        this.coffeeName = menuRequestDto.getCoffeeName();
+        this.price = menuRequestDto.getPrice();
+    }
 }
