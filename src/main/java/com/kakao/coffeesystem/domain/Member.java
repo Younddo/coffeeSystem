@@ -1,18 +1,18 @@
 package com.kakao.coffeesystem.domain;
 
-import com.kakao.coffeesystem.dto.requestDto.UserRequestDto;
+import com.kakao.coffeesystem.dto.requestDto.MemberRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.extern.java.Log;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name="member")
 @Getter
 @Setter
 @NoArgsConstructor
-public class User extends TimeStamped{
+public class Member extends TimeStamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,12 @@ public class User extends TimeStamped{
     private Long point;
 
 
-    public User(UserRequestDto userRequestDto) {
+    public Member(MemberRequestDto userRequestDto) {
         this.userNum = userRequestDto.getUserNum();
         this.point = userRequestDto.getChargeAmount();
     }
 
-    public void update(UserRequestDto userRequestDto) {
+    public void update(MemberRequestDto userRequestDto) {
         this.point += userRequestDto.getChargeAmount();
     }
 }
