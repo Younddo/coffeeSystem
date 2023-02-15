@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Orders")
 @NoArgsConstructor
 public class Order extends TimeStamped {
 
