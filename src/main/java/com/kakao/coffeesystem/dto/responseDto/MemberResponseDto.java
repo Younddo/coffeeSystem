@@ -13,6 +13,7 @@ public class MemberResponseDto {
     private Long point;
 
     public MemberResponseDto(Member user) {
+        this.id = user.getId();
         this.userNum = user.getUserNum();
         this.point = user.getPoint();
     }
