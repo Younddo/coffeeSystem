@@ -15,4 +15,9 @@ public class MemberRequestDto {
     public Long chargeAmount;
 
 
+    public MemberRequestDto(String userNum, Long point) {
+        this.userNum = userNum;
+        this.chargeAmount = point;
+    }
+
 }
