@@ -32,4 +32,8 @@ public class Member extends TimeStamped{
     public void update(MemberRequestDto userRequestDto) {
         this.point += userRequestDto.getChargeAmount();
     }
+
+    public void charge(Long price) {
+        this.point -= price;
+    }
 }
