@@ -26,5 +26,4 @@ class MemberTest {
         assertEquals(userNum, member.getUserNum());
         assertEquals(point, member.getPoint());
     }
-
 }
